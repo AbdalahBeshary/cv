@@ -44,11 +44,13 @@ function App() {
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
       } else {
-        alert('Failed to generate PDF. Please try again.');
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Export failed:', response.status, errorData);
+        alert(`Failed to generate PDF (${response.status}). ${errorData.details || 'Please try again.'}`);
       }
     } catch (err) {
       console.error('Failed to export PDF', err);
-      alert('Error connecting to export server.');
+      alert('Error connecting to export server. Check if the backend is running.');
     } finally {
       setIsExporting(null);
     }

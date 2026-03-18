@@ -59,11 +59,15 @@ app.post('/api/export-pdf', async (req, res) => {
     res.send(pdfBuffer);
   } catch (error) {
     console.error('Error generating PDF:', error);
-    res.status(500).json({ error: 'Failed to generate PDF' });
+    res.status(500).json({ 
+      error: 'Failed to generate PDF', 
+      details: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend listening on port ${PORT}`);
 });
