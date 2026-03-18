@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@layer utilities {
+  .theme-minimal-professional {
+    --primary: #1e293b;
+    --secondary: #e2e8f0;
+    --accent: #0f172a;
+  }
+  
+  .theme-modern-sidebar {
+    --primary: #2563eb;
+    --secondary: #dbeafe;
+    --accent: #1d4ed8;
+  }
+}
