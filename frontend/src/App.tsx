@@ -14,8 +14,9 @@ function App() {
     setIsExporting(targetTheme);
 
     try {
-      // Assuming backend runs on 3001
-      const response = await fetch('http://localhost:3001/api/export-pdf', {
+      // Use environment variable for the API base URL, defaulting to localhost for development
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+      const response = await fetch(`${API_BASE_URL}/api/export-pdf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
